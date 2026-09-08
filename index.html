@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantumClock — Time, Reimagined</title>
+<meta name="description" content="QuantumClock — a clock you don't read. You experience it. Coming soon to the App Store.">
+<style>
+:root{
+  --bg:#020305;
+  --fg:#f4f7fb;
+  --muted:#9da5af;
+  --gold:#ffb52b;
+  --line:rgba(255,255,255,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  line-height:1.6;
+}
+a{color:inherit;text-decoration:none}
+
+.site-nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:10;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 5vw;
+  background:linear-gradient(to bottom,rgba(2,3,5,.95),rgba(2,3,5,0));
+}
+.brand{font-size:13px;font-weight:700;letter-spacing:.24em}
+.nav-links{
+  display:flex;
+  gap:26px;
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.nav-links a:hover{color:var(--fg)}
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:110px 24px 70px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* --- QuantumClock field behind the hero typography --- */
+.hero-art{
+  position:absolute;
+  z-index:0;
+  left:50%;
+  top:54%;
+  width:min(96vw,1080px);
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+  opacity:.60;
+  filter:saturate(1.05) brightness(.94);
+}
+
+.hero-art::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse at center, transparent 35%, rgba(2,3,5,.18) 68%, rgba(2,3,5,.82) 100%),
+    linear-gradient(to bottom, rgba(2,3,5,.45), transparent 25%, transparent 72%, rgba(2,3,5,.72));
+}
+
+.hero-art img{
+  display:block;
+  width:100%;
+  height:auto;
+  mix-blend-mode:screen;
+}
+.hero::before,.hero::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:58%;
+  border:1px solid rgba(90,150,210,.16);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  pointer-events:none;
+}
+.hero::before{
+  width:min(78vw,900px);
+  height:min(42vw,480px);
+  box-shadow:0 0 100px rgba(0,150,190,.08);
+  animation:drift 12s ease-in-out infinite;
+}
+.hero::after{
+  width:min(58vw,650px);
+  height:min(30vw,340px);
+  border-color:rgba(120,190,230,.10);
+  box-shadow:0 0 70px rgba(40,130,180,.07);
+  animation:drift 8s ease-in-out infinite reverse;
+}
+@keyframes drift{
+  50%{transform:translate(-50%,-50%) scale(1.05);opacity:.6}
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-shadow:0 2px 24px rgba(0,0,0,.85);
+}
+.eyebrow{
+  margin-bottom:24px;
+  color:var(--gold);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.42em;
+  text-transform:uppercase;
+}
+h1{
+  margin:0;
+  font-size:clamp(42px,7vw,110px);
+  line-height:.9;
+  letter-spacing:-.055em;
+  font-weight:800;
+  white-space:nowrap;
+}
+.tagline{
+  max-width:620px;
+  margin:30px auto 0;
+  color:#c6cbd2;
+  font-size:clamp(18px,2.5vw,28px);
+  line-height:1.25;
+  letter-spacing:.01em;
+}
+.tagline span{
+  color:var(--fg);
+  font-weight:700;
+}
+.enter{
+  margin-top:70px;
+  color:#68727d;
+  font-size:10px;
+  letter-spacing:.30em;
+  text-transform:uppercase;
+}
+
+section{
+  max-width:1100px;
+  margin:0 auto;
+  padding:120px 28px;
+  border-top:1px solid var(--line);
+}
+.section-label{
+  color:var(--gold);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.30em;
+  text-transform:uppercase;
+  margin-bottom:22px;
+}
+h2{
+  margin:0 0 22px;
+  font-size:clamp(34px,6vw,64px);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+p{
+  margin:0;
+  color:var(--muted);
+  font-size:19px;
+  line-height:1.7;
+}
+
+.intro{
+  max-width:760px;
+  margin:0 auto;
+  text-align:center;
+}
+.intro p{max-width:680px;margin:0 auto}
+
+.screens{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:28px;
+  margin-top:55px;
+  align-items:start;
+}
+.screen{
+  margin:0;
+}
+.screen img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:22px;
+  box-shadow:0 24px 70px rgba(0,0,0,.55);
+}
+.screen figcaption{
+  margin-top:16px;
+  color:#68727d;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  text-align:center;
+}
+
+.manifesto{
+  text-align:center;
+  max-width:900px;
+}
+.manifesto h2{
+  font-size:clamp(42px,8vw,86px);
+  max-width:800px;
+  margin:0 auto 28px;
+}
+.manifesto p{max-width:680px;margin:0 auto}
+
+.store{
+  text-align:center;
+  padding-bottom:110px;
+}
+.store h2{
+  font-size:clamp(36px,6vw,62px);
+  margin-bottom:18px;
+}
+.store p{margin-bottom:30px}
+.appstore-link{
+  display:inline-block;
+  padding:15px 26px;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:4px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  transition:background .2s,border-color .2s;
+}
+.appstore-link:hover{
+  background:rgba(255,255,255,.06);
+  border-color:rgba(255,255,255,.45);
+}
+
+footer{
+  padding:42px 5vw 50px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  gap:30px;
+  flex-wrap:wrap;
+  color:#68727d;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+footer nav{display:flex;gap:24px}
+footer a:hover{color:var(--fg)}
+
+@media(max-width:700px){
+  .site-nav{padding:18px 20px}
+  .nav-links{gap:13px;font-size:9px}
+  .brand{font-size:10px}
+  .hero{padding-top:100px}
+  .hero-art{
+    width:145vw;
+    top:52%;
+    opacity:.86;
+  }
+  h1{white-space:normal}
+  section{padding:95px 22px}
+  p{font-size:17px}
+  .screens{grid-template-columns:1fr;gap:42px;max-width:420px;margin-left:auto;margin-right:auto}
+  footer{display:block}
+  footer nav{margin-top:18px}
+}
+
+.tagline span {
+  font-size: clamp(34px, 6vw, 64px);
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-nav">
+  <div class="brand">QUANTUMCLOCK</div>
+  <nav class="nav-links">
+    <a href="#clock">The Clock</a>
+    <a href="#experience">Experience</a>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-art" aria-hidden="true">
+      <img src="quantumclock-hero.png" alt="">
+    </div>
+
+    <div class="hero-content">
+      <div class="eyebrow">Time, Reimagined</div>
+      <h1>QUANTUMCLOCK</h1>
+      <div class="tagline">A clock you don't read.<br><span>You experience it.</span></div>
+      <div class="enter">Scroll Down to Enter the Field ↓</div>
+    </div>
+  </section>
+
+  <section id="clock">
+    <div class="intro">
+      <div class="section-label">The Clock</div>
+      <h2>Time is alive.</h2>
+      <p>
+        QuantumClock turns the passage of time into a living visual field.
+        The moment is not simply displayed. It moves, changes and evolves
+        continuously before you.
+      </p>
+    </div>
+
+    <div class="screens">
+      <figure class="screen">
+        <img src="quantumclock-03.png" alt="QuantumClock app screenshot">
+      </figure>
+
+      <figure class="screen">
+        <img src="quantumclock-02.png" alt="QuantumClock app screenshot">
+      </figure>
+
+      <figure class="screen">
+        <img src="quantumclock-01.png" alt="QuantumClock app screenshot">
+      </figure>
+    </div>
+  </section>
+
+  <section id="experience" class="manifesto">
+    <div class="section-label">Experience Time</div>
+    <h2>You don't watch the clock.<br>You watch time happen.</h2>
+    <p>
+      A new kind of clock for people who want something more than numbers
+      and hands. QuantumClock will mesmerize while quietly
+      telling you exactly <strong>when</strong> you are.
+    </p>
+  </section>
+
+  <section class="store">
+    <div class="section-label">Coming Soon</div>
+    <h2>QuantumClock</h2>
+    <p>Coming soon to the App Store</p>
+    <a class="appstore-link" href="#">&nbsp;&nbsp; COMING TO THE APP STORE</a>
+  </section>
+
+</main>
+
+<footer>
+  <div>QUANTUMCLOCK</div>
+  <nav aria-label="Footer navigation">
+    <a href="mailto:support@quantumclock.app">Contact</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
+</footer>
+
+</body>
+</html>
