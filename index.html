@@ -6,79 +6,112 @@
 <title>QuantumClock — Time, Experienced Differently</title>
 <meta name="description" content="QuantumClock is a clock you don't read. You experience it.">
 <style>
-:root{--bg:#020305;--fg:#f4f7fb;--muted:#9da5af;--gold:#ffb52b;--line:rgba(255,255,255,.10)}
+:root{--bg:#020305;--fg:#f4f7fb;--muted:#9da5af;--cyan:#39c8f4;--gold:#ffb52b;--line:rgba(255,255,255,.10)}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;line-height:1.6}
 a{color:inherit;text-decoration:none}
-.site-nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;background:linear-gradient(to bottom,rgba(2,3,5,.95),rgba(2,3,5,0))}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;background:linear-gradient(to bottom,rgba(2,3,5,.96),rgba(2,3,5,0))}
 .brand{font-size:13px;font-weight:700;letter-spacing:.24em}
 .nav-links{display:flex;gap:26px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .nav-links a:hover{color:var(--fg)}
 .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:110px 24px 70px;overflow:visible;position:relative}
-.hero::before,.hero::after{content:"";position:absolute;left:50%;top:58%;border:1px solid rgba(90,150,210,.16);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero::before,.hero::after{content:"";position:absolute;left:50%;top:59%;border:1px solid rgba(90,150,210,.15);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
 .hero::before{width:min(78vw,900px);height:min(42vw,480px);box-shadow:0 0 100px rgba(0,150,190,.08);animation:drift 12s ease-in-out infinite}
-.hero::after{width:min(58vw,650px);height:min(30vw,340px);border-color:rgba(120,190,230,.10);box-shadow:0 0 70px rgba(40,130,180,.07);animation:drift 8s ease-in-out infinite reverse}
+.hero::after{width:min(58vw,650px);height:min(30vw,340px);border-color:rgba(120,190,230,.09);box-shadow:0 0 70px rgba(40,130,180,.07);animation:drift 8s ease-in-out infinite reverse}
 @keyframes drift{50%{transform:translate(-50%,-50%) scale(1.05);opacity:.6}}
 .hero>*{position:relative;z-index:1}
 .eyebrow{margin-bottom:24px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.42em;text-transform:uppercase}
 h1{margin:0;font-size:clamp(42px,7vw,110px);line-height:.9;letter-spacing:-.055em;font-weight:800;white-space:nowrap}
 .tagline{max-width:620px;margin:30px auto 0;color:#c6cbd2;font-size:clamp(18px,2.5vw,28px);line-height:1.25;letter-spacing:.01em}
 .enter{margin-top:70px;color:#68727d;font-size:10px;letter-spacing:.30em;text-transform:uppercase}
-section{max-width:900px;margin:0 auto;padding:130px 28px;border-top:1px solid var(--line)}
+section{max-width:1100px;margin:0 auto;padding:120px 28px;border-top:1px solid var(--line)}
 .section-label{color:var(--gold);font-size:10px;font-weight:700;letter-spacing:.30em;text-transform:uppercase;margin-bottom:22px}
 h2{margin:0 0 22px;font-size:clamp(34px,6vw,64px);line-height:1;letter-spacing:-.045em}
 p{margin:0;color:var(--muted);font-size:19px;line-height:1.7}
-.manifesto{max-width:1000px;text-align:center}
+.intro{max-width:760px}
+.gallery{margin-top:70px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
+.shot{margin:0;position:relative}
+.shot img{display:block;width:100%;height:auto;background:#000;border-radius:24px;box-shadow:0 22px 70px rgba(0,0,0,.55),0 0 35px rgba(0,140,190,.07)}
+.shot:nth-child(2){transform:translateY(42px)}
+.shot:nth-child(3){transform:translateY(84px)}
+.shot figcaption{margin-top:18px;text-align:center;color:#68727d;font-size:10px;letter-spacing:.24em;text-transform:uppercase}
+.field{max-width:900px;text-align:center;padding-top:180px}
+.field h2{font-size:clamp(40px,7vw,78px)}
+.field p{max-width:720px;margin:0 auto}
+.manifesto{max-width:1000px;text-align:center;padding-top:150px}
 .manifesto h2{font-size:clamp(42px,8vw,86px)}
-.cta{text-align:center}
-.button{display:inline-block;margin-top:30px;padding:14px 24px;border:1px solid rgba(255,255,255,.22);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
-.button:hover{border-color:var(--gold);color:var(--gold)}
+.manifesto p{margin-top:28px}
+.cta{text-align:center;padding-top:130px;padding-bottom:130px}
+.cta h2{margin-bottom:18px}
+.cta p{max-width:620px;margin:0 auto}
+.contact{display:inline-block;margin-top:34px;padding:14px 24px;border:1px solid rgba(255,255,255,.22);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+.contact:hover{border-color:var(--gold);color:var(--gold)}
 footer{padding:42px 5vw 50px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;color:#68727d;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
 footer nav{display:flex;gap:22px}
 footer a:hover{color:var(--fg)}
-@media(max-width:600px){.site-nav{padding:18px 20px}.nav-links{gap:13px;font-size:9px}.brand{font-size:10px}.hero{padding-top:100px}section{padding:95px 22px}p{font-size:17px}footer{display:block}footer nav{margin-top:18px}}
+@media(max-width:760px){.site-nav{padding:18px 20px}.nav-links{display:none}.brand{font-size:10px}.hero{padding-top:100px}h1{font-size:clamp(36px,11vw,72px)}section{padding:90px 22px}.gallery{grid-template-columns:1fr;max-width:390px;margin-left:auto;margin-right:auto;gap:36px}.shot:nth-child(2),.shot:nth-child(3){transform:none}.shot figcaption{margin-top:12px}p{font-size:17px}.field,.manifesto{padding-top:100px}.cta{padding-top:90px;padding-bottom:90px}footer{display:block}footer nav{margin-top:18px}}
 </style>
 </head>
 <body>
 <header class="site-nav">
-<a class="brand" href="index.html">QUANTUMCLOCK</a>
-<nav class="nav-links" aria-label="Primary navigation">
-<a href="#about">About</a><a href="#experience">Experience</a><a href="support.html">Support</a>
+<a class="brand" href="#top">QUANTUMCLOCK</a>
+<nav class="nav-links" aria-label="Page navigation">
+<a href="#clock">The Clock</a><a href="#idea">The Idea</a>
 </nav>
 </header>
-<main>
+<main id="top">
 <section class="hero">
 <div class="eyebrow">Time, Reimagined</div>
 <h1>QUANTUMCLOCK</h1>
 <div class="tagline">A clock you don't read.<br>You experience it.</div>
-<div class="enter">Enter the field ↓</div>
+<div class="enter">Scroll to experience ↓</div>
 </section>
-<section id="about">
+
+<section id="clock">
+<div class="intro">
+<div class="section-label">The clock</div>
+<h2>Time is always moving.</h2>
+<p>QuantumClock turns that movement into a living visual experience. The field changes continuously as the seconds pass—waves, particles, light, and orbital motion becoming a different moment every time you look.</p>
+</div>
+<div class="gallery" aria-label="QuantumClock in motion">
+<figure class="shot">
+<img src="quantumclock-01.png" alt="QuantumClock showing the living quantum field at 5:23">
+<figcaption>5:23</figcaption>
+</figure>
+<figure class="shot">
+<img src="quantumclock-02.png" alt="QuantumClock showing the living quantum field at 5:22">
+<figcaption>5:22</figcaption>
+</figure>
+<figure class="shot">
+<img src="quantumclock-03.png" alt="QuantumClock showing the living quantum field at 5:21">
+<figcaption>5:21</figcaption>
+</figure>
+</div>
+</section>
+
+<section id="idea" class="field">
 <div class="section-label">The idea</div>
 <h2>Not a face.<br>A field.</h2>
-<p>QuantumClock replaces the traditional clock face with a living visual system. Time is expressed through motion, energy, light, and changing relationships rather than hands and numbers.</p>
+<p>There are no traditional hands sweeping around a dial. Instead, time is expressed through a dynamic system of waves, energy, particles, and motion. The result is less like checking a clock—and more like entering a small living universe.</p>
 </section>
-<section id="experience">
-<div class="section-label">The experience</div>
-<h2>A living system that happens to tell time.</h2>
-<p>The field is always moving. Structures emerge, particles travel, energy gathers and disperses, and moments evolve into the next. The clock is not something you stop to read. It is something you experience.</p>
-</section>
+
 <section class="manifesto">
 <div class="section-label">QuantumClock</div>
 <h2>Mesmerize me.<br>I'll forget why I'm here.</h2>
 <p>Time can be useful without being ordinary.</p>
 </section>
+
 <section class="cta">
-<div class="section-label">Need help?</div>
-<h2>We're here.</h2>
-<p>Questions, feedback, or problems with QuantumClock? Contact us and we'll help.</p>
-<a class="button" href="support.html">QuantumClock Support</a>
+<div class="section-label">QuantumClock</div>
+<h2>Experience time differently.</h2>
+<p>Questions, feedback, or need help with the app?</p>
+<a class="contact" href="mailto:support@quantumclock.app">Contact QuantumClock</a>
 </section>
 </main>
 <footer>
 <div>QUANTUMCLOCK · TIME, EXPERIENCED DIFFERENTLY · © 2026 TOM GLANDER</div>
-<nav aria-label="Footer navigation"><a href="support.html">Support</a><a href="privacy.html">Privacy</a></nav>
+<nav aria-label="Footer navigation"><a href="mailto:support@quantumclock.app">Contact</a><a href="privacy.html">Privacy</a></nav>
 </footer>
 </body>
 </html>
