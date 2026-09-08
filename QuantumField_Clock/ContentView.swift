@@ -1250,8 +1250,8 @@ struct FieldResonance: View {
                 // Small quantum node at each hour state.
 
                 let nodeSize =
-                    1.8
-                    + CGFloat(hourStrength) * 4.0
+                    2.2
+                    + CGFloat(hourStrength) * 6.0
 
                 let node = CGRect(
                     x: end.x - nodeSize / 2,
@@ -2216,7 +2216,7 @@ struct SecondParticle: View {
             secondPhase * Double.pi * 2
             - Double.pi / 2
 
-        let radius: CGFloat = 156
+        let radius: CGFloat = 100
 
         let x =
             cos(angle) * radius
